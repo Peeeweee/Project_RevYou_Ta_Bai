@@ -23,7 +23,7 @@ function App() {
   };
 
   const handleLoadingComplete = () => {
-    setAppStep(4); // Go to confirmation
+    handleStartSession(); // Skip Step 4 (Confirmation) and go straight to App (Step 5)
   };
 
   const handleStartSession = () => {

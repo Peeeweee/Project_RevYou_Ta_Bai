@@ -102,6 +102,14 @@ const InputSelection = ({ onAnalyze }) => {
         setCards(cards.filter(c => c.id !== id));
     };
 
+    // --- Shuffle ---
+    const handleShuffle = () => {
+        if (cards.length < 2) return;
+        const shuffled = [...cards].sort(() => Math.random() - 0.5);
+        setCards(shuffled);
+        triggerToast("Deck Randomized!");
+    };
+
     // --- Smart Load (File System API) ---
     const handleSmartLoad = async () => {
         if ('showOpenFilePicker' in window) {
@@ -310,6 +318,11 @@ const InputSelection = ({ onAnalyze }) => {
                                 {/* Load / Open File */}
                                 <button title="Open Reviewer File" className="icon-btn" onClick={handleSmartLoad}>
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                                </button>
+
+                                {/* Shuffle / Randomize */}
+                                <button title="Randomize Order" className="icon-btn" onClick={handleShuffle}>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
                                 </button>
 
                                 {/* Save As New File */}

@@ -1,39 +1,49 @@
 import React, { useEffect, useState } from 'react';
 
-const LoadingScreen = ({ onComplete }) => {
+const LoadingScreen = ({ onComplete, cardCount = 30 }) => {
     const [progress, setProgress] = useState(0);
-    const [statusText, setStatusText] = useState('Initializing...');
+    const [isReady, setIsReady] = useState(false);
 
+    // Simulate loading progress
     useEffect(() => {
         const timer = setInterval(() => {
             setProgress((prev) => {
                 if (prev >= 100) {
                     clearInterval(timer);
+                    setIsReady(true);
                     return 100;
                 }
-                return prev + 2; // complete in ~2.5s? 50 steps * 50ms = 2.5s
+                return prev + 5; // Faster load
             });
-        }, 40);
-
-        // Status text updates
-        setTimeout(() => setStatusText('Reading Data...'), 500);
-        setTimeout(() => setStatusText('Analyzing Pattern...'), 1200);
-        setTimeout(() => setStatusText('Generating Flashcards...'), 2000);
-        setTimeout(() => {
-            setStatusText('Finalizing...');
-            onComplete();
-        }, 2800);
+        }, 80); // ~1.6s total
 
         return () => clearInterval(timer);
-    }, [onComplete]);
+    }, []);
 
     return (
-        <div className="loading-screen">
-            <div className="loader"></div>
-            <h2>{statusText}</h2>
-            <div className="loading-bar">
-                <div className="loading-fill" style={{ width: `${progress}%` }}></div>
-            </div>
+        <div className="loading-card-white">
+            {isReady ? (
+                <>
+                    <h1 className="loading-title">Ready to Review!</h1>
+                    <p className="loading-subtitle">
+                        We successfully generated <strong>{cardCount} flashcards</strong> for you.
+                    </p>
+                    <button className="black-pill-btn" onClick={onComplete}>
+                        START REVIEW →
+                    </button>
+                </>
+            ) : (
+                <>
+                    <h1 className="loading-title" style={{ color: 'var(--primary-color)' }}>Analyzing...</h1>
+                    <p className="loading-subtitle">
+                        Creating your customized deck.
+                    </p>
+                    {/* Small Progress Bar for aesthetics */}
+                    <div className="loading-bar">
+                        <div className="loading-fill" style={{ width: `${progress}%` }}></div>
+                    </div>
+                </>
+            )}
         </div>
     );
 };
