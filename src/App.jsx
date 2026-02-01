@@ -76,7 +76,7 @@ function App() {
     <div className="app-container">
       {appStep === 1 && <WelcomeScreen onStart={handleStartFlow} />}
 
-      {appStep === 2 && <InputSelection onAnalyze={handleDataReady} />}
+      {appStep === 2 && <InputSelection onAnalyze={handleDataReady} onBack={() => setAppStep(1)} />}
 
       {appStep === 3 && <LoadingScreen onComplete={handleLoadingComplete} />}
 

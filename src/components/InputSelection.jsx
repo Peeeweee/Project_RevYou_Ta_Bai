@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { parseComplexJson } from '../utils/jsonParser';
 
-const InputSelection = ({ onAnalyze }) => {
+const InputSelection = ({ onAnalyze, onBack }) => {
     // State for the list of cards
     const [cards, setCards] = useState([]);
 
@@ -261,11 +261,19 @@ const InputSelection = ({ onAnalyze }) => {
     return (
         <>
             <div className="input-section">
-                <header style={{ textAlign: 'left', marginBottom: '1.5rem' }}>
-                    <h1 style={{ margin: 0, fontSize: '2.5rem', color: '#111' }}>
-                        RevYou <span style={{ color: 'var(--primary-color)' }}>ta Bai</span>
-                    </h1>
-                    <p style={{ color: '#666', fontSize: '1.1rem', marginTop: '0.5rem' }}>Project USeP • Flashcard Reviewer</p>
+                <header style={{ textAlign: 'left', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <button className="back-btn-small" onClick={onBack} aria-label="Go Back" style={{ color: '#333' }}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                    </button>
+                    <div>
+                        <h1 style={{ margin: 0, fontSize: '2.5rem', color: '#111' }}>
+                            RevYou <span style={{ color: 'var(--primary-color)' }}>ta Bai</span>
+                        </h1>
+                        <p style={{ color: '#666', fontSize: '1.1rem', marginTop: '0.2rem' }}>Project USeP • Flashcard Reviewer</p>
+                    </div>
                 </header>
 
                 <div className="input-grid">
