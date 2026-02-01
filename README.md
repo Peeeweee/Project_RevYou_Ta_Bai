@@ -1,16 +1,53 @@
-# React + Vite
+# RevYou ta Bai
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**RevYou ta Bai** is a modern, premium flashcard review application designed for **USeP** students. It features a clean, two-tone branding and a streamlined workflow for creating and reviewing study materials.
 
-Currently, two official plugins are available:
+![Input Selection Screen](./public/screenshots/input_selection.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- **Two-Tone Branding**: Elegant Black and Maroon design throughout the app, with high-contrast White/Gold accents in the study sessions.
+- **Dynamic Flashcards**: Interactive cards with auto-adjusting font sizes for questions and answers.
+- **Bulk Import**: Easily add multiple questions at once using simple JSON formatting.
+- **Randomized Review**: Automatic shuffling when restarting a deck to keep your memory sharp.
+- **Smart Sessions**: Progress tracking with a completion prompt that lets you restart or move to new topics.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🎨 Aesthetic Design
 
-## Expanding the ESLint configuration
+The app uses a curated color palette to ensure readability and a premium feel.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+![Header Style](./public/screenshots/header_style.png)
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (Latest)
+- npm or yarn
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Peeeweee/Project_RevYou_Ta_Bai.git
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+## 🛠️ Tech Stack
+- **Framework**: [React](https://reactjs.org/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Styling**: Vanilla CSS3
+- **Icons**: SVG-based Lucide icons
+
+## 📦 Project Structure
+- `src/components/`: Reusable UI components (Flashcard, InputSelection, etc.)
+- `src/utils/`: Helper functions for JSON parsing.
+- `src/data/`: Default question datasets.
+
+---
+*Created for Project USeP • Flashcard Reviewer*
