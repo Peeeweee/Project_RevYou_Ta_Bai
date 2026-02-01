@@ -31,6 +31,16 @@ export const parseComplexJson = (jsonData) => {
             return;
         }
 
+        // --- DIRECT MATCH CHECK (Simple Format) ---
+        if (obj.question && obj.answer) {
+            addCard(
+                obj.question,
+                obj.answer,
+                obj.category || "General"
+            );
+            return; // Done with this object
+        }
+
         // --- Specific Schema Handling based on user's sample ---
 
         // 1. Title/Topic Root
