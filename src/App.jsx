@@ -5,6 +5,7 @@ import WelcomeScreen from './components/WelcomeScreen';
 import InputSelection from './components/InputSelection';
 import LoadingScreen from './components/LoadingScreen';
 import StartConfirmation from './components/StartConfirmation';
+import SessionCompletion from './components/SessionCompletion';
 import questionsData from './data/questions.json';
 import './App.css';
 
@@ -13,6 +14,7 @@ function App() {
   const [cards, setCards] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isRevealed, setIsRevealed] = useState(false);
+  const [isSessionFinished, setIsSessionFinished] = useState(false);
 
   // Default to local data if no input is given (or used as base)
   const handleStartFlow = () => setAppStep(2);
@@ -30,6 +32,7 @@ function App() {
     setAppStep(5); // Go to main app
     setCurrentQuestionIndex(0);
     setIsRevealed(false);
+    setIsSessionFinished(false);
   };
 
   // --- Main App Logic (Step 5) ---
@@ -39,9 +42,13 @@ function App() {
   const handleReveal = () => setIsRevealed(true);
 
   const handleNext = () => {
+    if (currentQuestionIndex === maxQuestions - 1) {
+      setIsSessionFinished(true);
+      return;
+    }
     setIsRevealed(false);
     setTimeout(() => {
-      setCurrentQuestionIndex((prev) => (prev === maxQuestions - 1 ? 0 : prev + 1));
+      setCurrentQuestionIndex((prev) => prev + 1);
     }, 300);
   };
 
@@ -53,6 +60,16 @@ function App() {
   const handleRestart = () => {
     setAppStep(1);
     setCards([]);
+    setIsSessionFinished(false);
+  };
+
+  const handleRestartDeck = () => {
+    // Shuffle cards for a fresh experience
+    const shuffled = [...cards].sort(() => Math.random() - 0.5);
+    setCards(shuffled);
+    setCurrentQuestionIndex(0);
+    setIsRevealed(false);
+    setIsSessionFinished(false);
   };
 
   return (
@@ -75,7 +92,9 @@ function App() {
                   <polyline points="9 22 9 12 15 12 15 22"></polyline>
                 </svg>
               </button>
-              <h1>RevYou nata Bai?</h1>
+              <h1 style={{ color: '#fff' }}>
+                RevYou <span style={{ color: 'var(--secondary-color)' }}>nata Bai?</span>
+              </h1>
             </div>
             <p>Session Active • {maxQuestions} Cards</p>
             <div className="progress-bar">
@@ -111,6 +130,13 @@ function App() {
               Skip / Next &#8594;
             </button>
           </div>
+
+          {isSessionFinished && (
+            <SessionCompletion
+              onRestart={handleRestartDeck}
+              onNewSession={handleRestart}
+            />
+          )}
         </>
       )}
     </div>

@@ -262,7 +262,9 @@ const InputSelection = ({ onAnalyze }) => {
         <>
             <div className="input-section">
                 <header style={{ textAlign: 'left', marginBottom: '1.5rem' }}>
-                    <h1 style={{ color: 'var(--primary-color)', margin: 0, fontSize: '2.5rem' }}>RevYou ta Bai</h1>
+                    <h1 style={{ margin: 0, fontSize: '2.5rem', color: '#111' }}>
+                        RevYou <span style={{ color: 'var(--primary-color)' }}>ta Bai</span>
+                    </h1>
                     <p style={{ color: '#666', fontSize: '1.1rem', marginTop: '0.5rem' }}>Project USeP • Flashcard Reviewer</p>
                 </header>
 
@@ -413,7 +415,6 @@ const InputSelection = ({ onAnalyze }) => {
             {/* --- Success Toast --- */}
             {toast.show && (
                 <div className="success-toast">
-                    <div className="toast-icon">✓</div>
                     <span>{toast.message}</span>
                 </div>
             )}

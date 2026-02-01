@@ -3,7 +3,6 @@ import React from 'react';
 const StartConfirmation = ({ count, onConfirm }) => {
     return (
         <div className="start-confirmation">
-            <div className="success-icon">✨</div>
             <h2>Ready to Review!</h2>
             <p>We successfully generated <strong>{count}</strong> flashcards for you.</p>
 
