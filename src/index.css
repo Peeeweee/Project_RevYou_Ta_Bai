@@ -414,6 +414,12 @@ body {
 }
 
 /* List Area */
+.section-label {
+  margin-bottom: 0;
+  font-weight: 600;
+  color: #555;
+}
+
 .list-header {
   display: flex;
   justify-content: space-between;

@@ -168,122 +168,131 @@ const InputSelection = ({ onAnalyze }) => {
     };
 
     return (
-        <div className="input-section">
-            <h2>Create Your Deck</h2>
+        <>
+            <div className="input-section">
+                <header style={{ textAlign: 'left', marginBottom: '1.5rem' }}>
+                    <h1 style={{ color: 'var(--primary-color)', margin: 0, fontSize: '2.5rem' }}>RevYou ta Bai</h1>
+                    <p style={{ color: '#666', fontSize: '1.1rem', marginTop: '0.5rem' }}>Project USeP • Flashcard Reviewer</p>
+                </header>
 
-            <div className="input-grid">
-                {/* Left Col: Form & Actions */}
-                <div className="form-area">
-                    <p className="section-label">New Flashcard</p>
+                <div className="input-grid">
+                    {/* Left Col: Form & Actions */}
+                    <div className="form-area">
+                        <h2>Create Your Deck</h2>
 
-                    <input
-                        className="modern-input"
-                        placeholder="Enter Question..."
-                        value={qInput}
-                        onChange={(e) => setQInput(e.target.value)}
-                    />
+                        <input
+                            className="modern-input"
+                            placeholder="Enter Question..."
+                            value={qInput}
+                            onChange={(e) => setQInput(e.target.value)}
+                        />
 
-                    <textarea
-                        className="modern-textarea"
-                        placeholder="Enter Answer..."
-                        value={aInput}
-                        onChange={(e) => setAInput(e.target.value)}
-                    />
+                        <textarea
+                            className="modern-textarea"
+                            placeholder="Enter Answer..."
+                            value={aInput}
+                            onChange={(e) => setAInput(e.target.value)}
+                        />
 
-                    <div className="form-actions">
-                        <button className="add-btn" onClick={handleAddCard}>
-                            + Add Card
-                        </button>
-                        <button className="text-link-btn" onClick={handleDemoData}>
-                            + Load Demo
-                        </button>
+                        <div className="form-actions">
+                            <button className="add-btn" onClick={handleAddCard}>
+                                + Add Card
+                            </button>
+                            <button className="text-link-btn" onClick={handleDemoData}>
+                                + Load Demo
+                            </button>
+                        </div>
+
+                        {error && <p className="error-msg-small">{error}</p>}
                     </div>
 
-                    {error && <p className="error-msg-small">{error}</p>}
-                </div>
+                    <div className="divider-vertical"></div>
 
-                <div className="divider-vertical"></div>
+                    {/* Right Col: List Preview */}
+                    <div className="list-area">
+                        <div className="list-header">
+                            <h2>Your Cards ({cards.length})</h2>
+                            <div className="quick-icons">
+                                <label title="Import JSON" className="icon-btn">
+                                    <input type="file" accept=".json" onChange={handleFileUpload} style={{ display: 'none' }} />
+                                    {/* Upload Icon */}
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                </label>
 
-                {/* Right Col: List Preview */}
-                <div className="list-area">
-                    <div className="list-header">
-                        <p className="section-label">Your Cards ({cards.length})</p>
-                        <div className="quick-icons">
-                            <label title="Import JSON" className="icon-btn">
-                                <input type="file" accept=".json" onChange={handleFileUpload} style={{ display: 'none' }} />
-                                {/* Upload Icon */}
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                            </label>
-
-                            <button title="Export JSON" className="icon-btn" onClick={handleDownloadJSON}>
-                                {/* Download Icon */}
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                            </button>
-
-                            <button title="Save to Browser" className="icon-btn" onClick={handleSaveBrowser}>
-                                {/* Floppy / Save Icon */}
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v13a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-                            </button>
-
-                            {savedDataAvailable && (
-                                <button title="Resume / Load Saved" className="icon-btn" onClick={handleLoadSaved}>
-                                    {/* Folder / Open Icon */}
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                                <button title="Export JSON" className="icon-btn" onClick={handleDownloadJSON}>
+                                    {/* Download Icon */}
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                                 </button>
+
+                                <button title="Save to Browser" className="icon-btn" onClick={handleSaveBrowser}>
+                                    {/* Floppy / Save Icon */}
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v13a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                                </button>
+
+                                {savedDataAvailable && (
+                                    <button title="Resume / Load Saved" className="icon-btn" onClick={handleLoadSaved}>
+                                        {/* Folder / Open Icon */}
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                                    </button>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="card-list-container">
+                            {cards.length === 0 ? (
+                                <div className="empty-state">No cards added yet.</div>
+                            ) : (
+                                cards.map((card, idx) => (
+                                    <div key={card.id} className="preview-card-item">
+                                        <div className="preview-content">
+                                            <strong>Q: {card.question}</strong>
+                                            <span className="preview-answer">A: {card.answer}</span>
+                                        </div>
+                                        <button className="delete-btn" onClick={() => handleDeleteCard(card.id)}>×</button>
+                                    </div>
+                                ))
                             )}
                         </div>
-                    </div>
 
-                    <div className="card-list-container">
-                        {cards.length === 0 ? (
-                            <div className="empty-state">No cards added yet.</div>
-                        ) : (
-                            cards.map((card, idx) => (
-                                <div key={card.id} className="preview-card-item">
-                                    <div className="preview-content">
-                                        <strong>Q: {card.question}</strong>
-                                        <span className="preview-answer">A: {card.answer}</span>
-                                    </div>
-                                    <button className="delete-btn" onClick={() => handleDeleteCard(card.id)}>×</button>
-                                </div>
-                            ))
-                        )}
+                        <button className="primary-btn full-width" onClick={handleStartReview}>
+                            Start Review Session
+                        </button>
                     </div>
-
-                    <button className="primary-btn full-width" onClick={handleStartReview}>
-                        Start Review Session
-                    </button>
                 </div>
             </div>
 
             {/* --- Custom Modal --- */}
-            {modal.visible && (
-                <div className="modal-overlay">
-                    <div className="modal-card">
-                        <h3>{modal.type === 'confirm' ? 'Confirm Action' : 'Notification'}</h3>
-                        <p>{modal.message}</p>
-                        <div className="modal-actions">
-                            <button className="modal-btn-primary" onClick={modal.onConfirm}>
-                                {modal.type === 'confirm' ? 'Yes, Proceed' : 'Okay'}
-                            </button>
-                            {modal.type === 'confirm' && (
-                                <button className="modal-btn-cancel" onClick={() => setModal({ ...modal, visible: false })}>
-                                    Cancel
+            {
+                modal.visible && (
+                    <div className="modal-overlay">
+                        <div className="modal-card">
+                            <h3>{modal.type === 'confirm' ? 'Confirm Action' : 'Notification'}</h3>
+                            <p>{modal.message}</p>
+                            <div className="modal-actions">
+                                <button className="modal-btn-primary" onClick={modal.onConfirm}>
+                                    {modal.type === 'confirm' ? 'Yes, Proceed' : 'Okay'}
                                 </button>
-                            )}
+                                {modal.type === 'confirm' && (
+                                    <button className="modal-btn-cancel" onClick={() => setModal({ ...modal, visible: false })}>
+                                        Cancel
+                                    </button>
+                                )}
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )
+            }
 
             {/* --- Success Toast --- */}
-            {toast.show && (
-                <div className="success-toast">
-                    <div className="toast-icon">✓</div>
-                    <span>{toast.message}</span>
-                </div>
-            )}
-        </div>
+            {
+                toast.show && (
+                    <div className="success-toast">
+                        <div className="toast-icon">✓</div>
+                        <span>{toast.message}</span>
+                    </div>
+                )
+            }
+        </>
     );
 };
 
