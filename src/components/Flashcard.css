@@ -1,0 +1,122 @@
+.flashcard-container {
+  width: 100%;
+  max-width: 450px;
+  /* Slightly narrower for portrait card look */
+  height: 550px;
+  /* Taller card */
+  perspective: 1000px;
+  margin: 0 auto;
+}
+
+.flashcard {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Bouncy flip */
+  transform-style: preserve-3d;
+  cursor: pointer;
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.flashcard.flipped {
+  transform: rotateY(180deg);
+  cursor: default;
+}
+
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem;
+  text-align: center;
+  background: #ffffff;
+  color: var(--text-color);
+}
+
+.front {
+  background: #ffffff;
+}
+
+.back {
+  background: #ffffff;
+  transform: rotateY(180deg);
+  /* Optional: Light pattern or subtle texture for back */
+}
+
+.category-tag {
+  position: absolute;
+  top: 30px;
+  background: #f0f0f0;
+  color: #666;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.content {
+  width: 100%;
+}
+
+.content h2 {
+  font-size: 2rem;
+  /* Initial question size */
+  margin-bottom: 2rem;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--text-color);
+  /* Ensure this is dark (e.g. #333) */
+}
+
+.back .content h2 {
+  color: var(--primary-color);
+  /* Answer in Maroon */
+  font-size: 2.2rem;
+}
+
+.hint {
+  font-size: 0.9rem;
+  color: #999;
+  margin-top: 2rem;
+  font-weight: 500;
+}
+
+/* Specific reveal button style if needed inside card, 
+   but our "Next" button is the main interaction on back */
+.next-btn {
+  background: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  padding: 16px 40px;
+  font-size: 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(123, 30, 35, 0.3);
+}
+
+.next-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 15px 25px rgba(123, 30, 35, 0.4);
+}
+
+.next-btn:active {
+  transform: translateY(0);
+}
